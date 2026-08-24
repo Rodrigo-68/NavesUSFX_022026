@@ -28,6 +28,10 @@ protected:
     // El handle que controla la desaparición
     FTimerHandle TimerHandle_Desaparicion;
 
+    // NUEVO: dirección propia de este enemigo, elegida al azar
+    UPROPERTY()
+    FVector DireccionMovimiento;
+
     UFUNCTION()
     void Desaparecer();
 };

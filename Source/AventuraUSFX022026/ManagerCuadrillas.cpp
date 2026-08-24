@@ -24,9 +24,15 @@ void AManagerCuadrillas::BeginPlay()
 
 void AManagerCuadrillas::SpawnearCuadrilla1()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Cuadrilla1 tiene %d clases"), ClasesCuadrilla1.Num());
+
 	for (int32 i = 0; i < ClasesCuadrilla1.Num(); i++)
 	{
-		if (ClasesCuadrilla1[i] == nullptr) continue;
+		if (ClasesCuadrilla1[i] == nullptr)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Clase en indice %d esta vacia (None)"), i);
+			continue;
+		}
 
 		FTransform Transformacion = PuntosSpawnCuadrilla1.IsValidIndex(i) ?
 			PuntosSpawnCuadrilla1[i] : GetActorTransform();
@@ -38,7 +44,12 @@ void AManagerCuadrillas::SpawnearCuadrilla1()
 
 		if (NuevoEnemigo)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Enemigo %d spawneado: %s"), i, *GetNameSafe(NuevoEnemigo));
 			MiembrosCuadrilla1.Add(NuevoEnemigo);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Fallo el spawn del enemigo %d"), i);
 		}
 	}
 }
